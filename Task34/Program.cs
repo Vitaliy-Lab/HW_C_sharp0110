@@ -1,37 +1,40 @@
 ﻿// Задача 34: 
-// 1. Задайте массив заполненный случайными положительными трёхзначными числами. 
-// 2. Напишите программу, которая покажет количество чётных чисел в массиве.
+// Задайте массив заполненный случайными положительными трёхзначными числами. 
+// Напишите программу, которая покажет количество чётных чисел в массиве.
 // [345, 897, 568, 234] -> 2
 
-
-Console.WriteLine("Введите размер массива");
-int size = Convert.ToInt32(Console.ReadLine());
-int[] numbers = new int[size];
-int count = 0;
-FillArrayRandomNumbers(numbers);
-PrintArray(numbers);
-
-
-for (int i = 0; i < numbers.Length; i++)
+int[] CreateArrayRndInt(int min, int max, int size)
 {
-    if (numbers[i] % 2 == 0)
-    count++;
-}
-
-Console.WriteLine($"количество чётных чисел в массиве -> {count} ");
-
-void FillArrayRandomNumbers(int[] array)
-{
-    for(int i = 0; i < array.Length; i++)
+    int[] array = new int[size];
+    var rnd = new Random();
+    for (int i = 0; i < size; i++)
     {
-        array[i] = new Random().Next(100,1000);
+        array[i] = rnd.Next(min, max + 1);
+    }
+    return array;
+}
+void PrintArray(int[] arr)
+{
+    for (int i = 0; i < arr.Length; i++)
+    {
+        Console.Write($"{arr[i]}, ");
     }
 }
-void PrintArray(int[] array)
+
+int EvenNums(int[] numbers)
 {
-    for(int i = 0; i < array.Length; i++)
+    int count = 0;
+    for (int i = 0; i < numbers.Length; i++)
     {
-        Console.Write(array[i] + " ");
+        if (numbers[i] % 2 == 0)
+            count++;
     }
-    Console.WriteLine();
+    return count;
 }
+int[] arrA = CreateArrayRndInt(100, 1000, 12);
+Console.Write("[");
+PrintArray(arrA);
+Console.Write("]");
+
+int evenNums = EvenNums(arrA);
+Console.WriteLine($" -> {evenNums} ");
