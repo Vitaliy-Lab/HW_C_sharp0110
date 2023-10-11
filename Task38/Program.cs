@@ -32,7 +32,7 @@ double DiffMaxMinElements(double[] array)
 {
     double min = array[0];
     double max = array[0];
-    double arr = max - min;
+    
     for(int i = 0; i < array.Length;)
     {
         if (array[i] > max) max = array[i];
