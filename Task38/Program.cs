@@ -1,47 +1,53 @@
 ﻿// Задача 38: 
-// Задайте массив вещественных чисел. 
+// Задайте массив вещественных чисел.
 // Найдите разницу между максимальным и минимальным элементами массива.
-// [3 7 22 2 78] -> 76;
+// [3 7 22 2 78] -> 76
 
-int size = 10;
-int[] numbers = new int[size];
-FillArrayRandomNumbers(numbers);
-PrintArray(numbers);
-
-int max = numbers[0];
-int min = numbers[0];
-
-for (int i = 0; i < numbers.Length; i++)
+double[] CreateArrayRndDouble(int size, int min, int max)
 {
-    if (numbers[i] > max)
+    double[] arr = new double[size];
+    Random rnd = new Random();
+
+    for (int i = 0; i < size; i++)
     {
-        max = numbers[i];
+        arr[i] = rnd.NextDouble() * (max - min) + min;
     }
-    else if (numbers[i] < min)
-    {
-        min = numbers[i];
-    }
+
+    return arr;
 }
 
-Console.WriteLine($"Минимальное число: {min}");
-Console.WriteLine($"Минимальное число: {max}");
-Console.WriteLine($"Разница между максимальным и минимальным числами: {max-min}");
-
-void FillArrayRandomNumbers(int[] array)
+void PrintArrayDouble(double[] array)
 {
+    //Console.WriteLine("[");
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = new Random().Next(1, 555);
+        //double nRound = Math.Round(arr[i], 1);
+        if (i < array.Length - 1) Console.Write($"{array[i]:F2}, ");
+        else Console.Write($"{array[i]:F2}");
     }
+    //Console.WriteLine("]");
 }
 
-
-void PrintArray(int[] array)
+double DiffMaxMinElements(double[] array)
 {
-    for (int i = 0; i < array.Length; i++)
+    double min = array[0];
+    double max = array[0];
+
+    for(int i = 0; i < array.Length;)
     {
-        Console.Write(array[i] + " ");
+        if (array[i] > max) max = array[i];
+
+        if (array[i] < min) min = array[i];
+
+        i = i + 1;
     }
-    Console.WriteLine();
+    return max - min;
 }
- @Vitaliy-Lab
+
+double[] arrA = CreateArrayRndDouble(6, 5, 49);
+Console.Write("[");
+PrintArrayDouble(arrA);
+Console.Write("]");
+
+double diffMaxMinElements = DiffMaxMinElements(arrA);
+Console.Write($" -> {diffMaxMinElements:F2} ");
