@@ -32,7 +32,7 @@ double DiffMaxMinElements(double[] array)
 {
     double min = array[0];
     double max = array[0];
-
+    double arr = max - min;
     for(int i = 0; i < array.Length;)
     {
         if (array[i] > max) max = array[i];
@@ -41,6 +41,7 @@ double DiffMaxMinElements(double[] array)
 
         i = i + 1;
     }
+    Console.Write($" => {max:F2} - {min:F2} =");
     return max - min;
 }
 
@@ -50,4 +51,4 @@ PrintArrayDouble(arrA);
 Console.Write("]");
 
 double diffMaxMinElements = DiffMaxMinElements(arrA);
-Console.Write($" -> {diffMaxMinElements:F2} ");
+Console.Write($" {diffMaxMinElements:F2} ");
